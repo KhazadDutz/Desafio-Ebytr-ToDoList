@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Login, Tasks } from '../Pages/index';
+import { Login, Tasks } from '../Pages/Index';
 
 function Routes() {
   return (
