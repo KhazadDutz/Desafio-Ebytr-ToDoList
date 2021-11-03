@@ -2,12 +2,12 @@ import appContext from '../Context/appContext';
 import React, { useState } from 'react';
 
 function AppProvider({ children }) {
-  const [login, setLogin] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const data = {
-    login,
-    setLogin,
+    email,
+    setEmail,
     password,
     setPassword,
   };
