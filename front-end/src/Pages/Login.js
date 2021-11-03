@@ -1,8 +1,12 @@
 import React, { useContext } from 'react';
+import { useHistory } from 'react-router';
 import appContext from '../Context/appContext';
+import { checkUserAPI } from '../Services/index';
 
 function Login() {
-  const { setEmail, setPassword } = useContext(appContext);
+  const { email, setEmail, setPassword, password } = useContext(appContext);
+  const history = useHistory();
+  const actualURL = history.location;
 
   return (
     <div>
@@ -27,7 +31,7 @@ function Login() {
       </label>
       <button
         type="button"
-        // onClick={ () => função de requisição para verificar email }
+        onClick={ () => checkUserAPI(actualURL, email, password) }
       >
         Login
       </button>
