@@ -25,6 +25,12 @@ function Login() {
           onChange={ ({ target: { value } }) => setPassword(value) }
         />
       </label>
+      <button
+        type="button"
+        // onClick={ () => função de requisição para verificar email }
+      >
+        Login
+      </button>
     </div>
   )
 }
