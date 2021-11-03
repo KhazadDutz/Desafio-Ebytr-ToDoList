@@ -16,6 +16,15 @@ function Login() {
           onChange={ ({ target: { value } }) => setEmail(value) }
         />
       </label>
+      <label htmlFor="password">
+        Password
+        <input 
+          id="password"
+          type="password"
+          name="password-input"
+          onChange={ ({ target: { value } }) => setPassword(value) }
+        />
+      </label>
     </div>
   )
 }
