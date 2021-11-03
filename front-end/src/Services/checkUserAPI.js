@@ -7,7 +7,7 @@ async function checkUserAPI(URL, email, password) {
     })
   }
   try {
-    const response = await fetch(`${URL}`, options)
+    const response = await fetch(`http://localhost:3000${URL}`, options)
     const data = await response.json();
     return response.ok ? Promise.resolve(data) : Promise.reject(data);
   } catch (error) {

@@ -6,7 +6,7 @@ import { checkUserAPI } from '../Services/index';
 function Login() {
   const { email, setEmail, setPassword, password } = useContext(appContext);
   const history = useHistory();
-  const actualURL = history.location;
+  const actualURL = history.location.pathname;
 
   return (
     <div>
