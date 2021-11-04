@@ -54,6 +54,7 @@ function Login() {
       </button>
       <button
         type="button"
+        // aqui eu nao sei se eu deveria colocar logo de cara a funçao history.push() ou criar uma funçao para utilizá-la;
         onClick={ () => history.push('/signup') }
       >
         Sign Up
