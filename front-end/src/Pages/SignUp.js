@@ -16,11 +16,8 @@ function SignUp() {
 
   const redirectAfterCheckUser = async (email, password) => {
     const checkedUser = await checkUserAPI(actualURL, email, password);
-    if (checkedUser.message) {
-      // isso seria uma boa prática? Retornar uma função de mudança de estado?
-      return setSignUpMessage('Insert a valid email or password');
-    }
-    history.push('/');
+    console.log(checkedUser, 'DENTRO DO SIGNUP RETORNO DA CHECKUSERAPI')
+    // history.push('/');
   }
 
   return (

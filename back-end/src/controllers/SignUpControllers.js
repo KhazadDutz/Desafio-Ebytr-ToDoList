@@ -2,8 +2,12 @@ const SignUpServices = require('../services/SignUpServices');
 
 const registerNewUser = async (req, res) => {
   const { email, password } = req.body;
-  await SignUpServices.registerNewUser(email, password);
-  return res.status(200).json({ message: 'User registration successful' });
+  const status = await SignUpServices.registerNewUser(email, password);
+  console.log(status, 'DENTRO DO CONTROLLERS')
+  if (status.err) {
+    return res.status(status.err.code).json({ message: status.err.message });
+  }
+  return res.status(status.ok.code).json({ message: status.ok.message });
 }
 
 module.exports = {
