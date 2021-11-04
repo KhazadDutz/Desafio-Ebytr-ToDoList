@@ -4,9 +4,23 @@ import appContext from '../Context/appContext';
 import { checkUserAPI } from '../Services/index';
 
 function Login() {
-  const { email, setEmail, setPassword, password } = useContext(appContext);
+  const { 
+    email, 
+    setEmail,
+    setPassword,
+    password,
+    loginMessage,
+    setLoginMessage
+  } = useContext(appContext);
   const history = useHistory();
   const actualURL = history.location.pathname;
+
+  const redirectAfterCheckUser = async () => {
+    const checkedUser = await checkUserAPI(actualURL, email, password);
+    if (checkedUser.message) {
+      setLoginMessage('Incorrect email or password');
+    }
+  }
 
   return (
     <div>
@@ -29,9 +43,10 @@ function Login() {
           onChange={ ({ target: { value } }) => setPassword(value) }
         />
       </label>
+      <span>{loginMessage ? <p>{loginMessage}</p> : <></>}</span>
       <button
         type="button"
-        onClick={ () => checkUserAPI(actualURL, email, password) }
+        onClick={ () => redirectAfterCheckUser() }
       >
         Login
       </button>

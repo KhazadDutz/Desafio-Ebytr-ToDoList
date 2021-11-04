@@ -11,7 +11,7 @@ async function checkUserAPI(URL, email, password) {
     const data = await response.json();
     return response.ok ? Promise.resolve(data) : Promise.reject(data);
   } catch (error) {
-    console.log('deu ruim')
+    return { message: error };
   }
 }
 
