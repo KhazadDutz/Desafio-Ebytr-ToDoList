@@ -18,8 +18,10 @@ function Login() {
   const redirectAfterCheckUser = async () => {
     const checkedUser = await checkUserAPI(actualURL, email, password);
     if (checkedUser.message) {
-      setLoginMessage('Incorrect email or password');
+      // isso seria uma boa prática? Retornar uma função de mudança de estado?
+      return setLoginMessage('Incorrect email or password');
     }
+    history.push('/tasks');
   }
 
   return (
@@ -49,6 +51,12 @@ function Login() {
         onClick={ () => redirectAfterCheckUser() }
       >
         Login
+      </button>
+      <button
+        type="button"
+        onClick={ () => history.push('/signup') }
+      >
+        Sign Up
       </button>
     </div>
   )
