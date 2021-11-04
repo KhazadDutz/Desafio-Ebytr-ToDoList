@@ -7,15 +7,15 @@ function Login() {
   const { 
     email, 
     setEmail,
-    setPassword,
     password,
+    setPassword,
     loginMessage,
     setLoginMessage
   } = useContext(appContext);
   const history = useHistory();
   const actualURL = history.location.pathname;
 
-  const redirectAfterCheckUser = async () => {
+  const redirectAfterCheckUser = async (email, password) => {
     const checkedUser = await checkUserAPI(actualURL, email, password);
     if (checkedUser.message) {
       // isso seria uma boa prática? Retornar uma função de mudança de estado?
@@ -48,7 +48,7 @@ function Login() {
       <span>{loginMessage ? <p>{loginMessage}</p> : <></>}</span>
       <button
         type="button"
-        onClick={ () => redirectAfterCheckUser() }
+        onClick={ () => redirectAfterCheckUser(email, password) }
       >
         Login
       </button>
