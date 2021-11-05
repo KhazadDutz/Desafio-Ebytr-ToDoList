@@ -1,12 +1,22 @@
 const {
-  loginUserValidation,
-} = require('./LoginValidations');
-
-const {
   validateJWT,
 } = require('./validateJWT');
 
+const {
+  credencialValidation,
+} = require('./credencialsValidations');
+
+const {
+  validateUser,
+} = require('./validateUser');
+
+const {
+  checkDuplicateUser,
+} = require('./checkDuplicateUser');
+
 module.exports = {
-  loginUserValidation,
   validateJWT,
+  validateUser,
+  credencialValidation,
+  checkDuplicateUser,
 };

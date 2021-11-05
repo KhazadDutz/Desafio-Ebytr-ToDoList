@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import appContext from '../Context/appContext';
-import { checkUserAPI } from '../Services/index';
+// import { checkUserAPI } from '../Services/index';
 
 function Login() {
   const { 
@@ -9,23 +9,20 @@ function Login() {
     setEmail,
     password,
     setPassword,
-    loginMessage,
-    setLoginMessage
+    checkUserMessage,
+    setCheckUserMessage,
+    redirectAfterCheckUser,
   } = useContext(appContext);
   const history = useHistory();
   const actualURL = history.location.pathname;
 
-  const redirectAfterCheckUser = async (email, password) => {
-    const checkedUser = await checkUserAPI(actualURL, email, password);
-    if (checkedUser.code !== 200) {
-      return setLoginMessage(checkedUser.message);
-    }
-    history.push('/tasks');
-  }
+  useEffect(() => {
+    setCheckUserMessage('');
+  }, []);
 
   return (
     <div>
-      <h1>This is my Login Page</h1>
+      <h1>Login to organize your tasks</h1>
       <label htmlFor="email">
         Email
         <input 
@@ -44,19 +41,12 @@ function Login() {
           onChange={ ({ target: { value } }) => setPassword(value) }
         />
       </label>
-      <span>{loginMessage ? <p>{loginMessage}</p> : <></>}</span>
+      <span>{checkUserMessage ? <p>{checkUserMessage}</p> : <></>}</span>
       <button
         type="button"
-        onClick={ () => redirectAfterCheckUser(email, password) }
+        onClick={ () => redirectAfterCheckUser(actualURL, 'tasks' ,email, password) }
       >
-        Login
-      </button>
-      <button
-        type="button"
-        // aqui eu nao sei se eu deveria colocar logo de cara a funçao history.push() ou criar uma funçao para utilizá-la;
-        onClick={ () => history.push('/signup') }
-      >
-        Sign Up
+        Sign In
       </button>
     </div>
   )

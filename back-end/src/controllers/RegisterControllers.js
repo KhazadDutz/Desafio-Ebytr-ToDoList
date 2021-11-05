@@ -1,8 +1,8 @@
-const SignUpServices = require('../services/SignUpServices');
+const RegisterServices = require('../services/RegisterServices');
 
 const registerNewUser = async (req, res) => {
   const { email, password } = req.body;
-  const status = await SignUpServices.registerNewUser(email, password);
+  const status = await RegisterServices.registerNewUser(email, password);
 
   if (status.err) {
     return res.status(status.err.code).json({ message: status.err.message });

@@ -9,8 +9,8 @@ app.use(cors());
 
 app.use(bodyParser.json());
 
-app.use('/signup', routes.signupRoutes);
+app.use('/register', routes.registerRoutes);
 
-app.use('/', routes.loginRoutes);
+app.use('/login', routes.loginRoutes);
 
 module.exports = app;

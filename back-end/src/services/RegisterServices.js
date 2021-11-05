@@ -1,7 +1,7 @@
-const SignUpModels = require('../models/SignUpModels');
+const RegisterModels = require('../models/RegisterModels');
 
 const registerNewUser = async (email, password) => {
-  const status = await SignUpModels.registerNewUser(email, password);
+  const status = await RegisterModels.registerNewUser(email, password);
   if (status.err) {
     return { err: { code: status.err.code, message: status.err.message } };
   }

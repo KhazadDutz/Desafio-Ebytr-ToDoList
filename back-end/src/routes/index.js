@@ -1,7 +1,7 @@
 const loginRoutes = require('./LoginRoutes');
-const signupRoutes = require('./SignUpRoutes');
+const registerRoutes = require('./RegisterRoutes');
 
 module.exports = {
   loginRoutes,
-  signupRoutes,
+  registerRoutes,
 };

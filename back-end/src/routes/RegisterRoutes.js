@@ -1,12 +1,12 @@
 const router = require('express').Router();
-const LoginControllers = require('../controllers/LoginControllers');
 const validations = require('../middlewares/index');
+const { registerNewUser } = require('../controllers/RegisterControllers');
 
 router.post(
   '/',
   validations.credencialValidation,
-  validations.validateUser,
-  LoginControllers.login,
+  validations.checkDuplicateUser,
+  registerNewUser,
 );
 
 module.exports = router;
