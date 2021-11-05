@@ -13,4 +13,6 @@ app.use('/register', routes.registerRoutes);
 
 app.use('/login', routes.loginRoutes);
 
+app.use('/tasks', routes.tasksRoutes);
+
 module.exports = app;

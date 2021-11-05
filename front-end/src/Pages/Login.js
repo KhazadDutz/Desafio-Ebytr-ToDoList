@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import appContext from '../Context/appContext';
-// import { checkUserAPI } from '../Services/index';
 
 function Login() {
   const { 

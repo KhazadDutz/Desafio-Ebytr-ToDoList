@@ -6,6 +6,11 @@ const validateUser = async (req, res, next) => {
   if (!doesUserExists || doesUserExists.password !== password) {
     return res.status(401).json({ message: 'Incorrect email or password' });
   }
+  const { _id } = doesUserExists;
+  req.user = {
+    id: _id.toString(),
+    email,
+  }
   next();
 }
 
