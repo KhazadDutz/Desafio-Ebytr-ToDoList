@@ -16,8 +16,10 @@ function SignUp() {
 
   const redirectAfterCheckUser = async (email, password) => {
     const checkedUser = await checkUserAPI(actualURL, email, password);
-    console.log(checkedUser, 'DENTRO DO SIGNUP RETORNO DA CHECKUSERAPI')
-    // history.push('/');
+    if (checkedUser.code !== 200) {
+      return setSignUpMessage(checkedUser.message);
+    }
+    history.push('/');
   }
 
   return (

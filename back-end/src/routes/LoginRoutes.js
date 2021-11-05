@@ -1,6 +1,11 @@
 const router = require('express').Router();
-const { login } = require('../controllers/LoginControllers');
+const LoginControllers = require('../controllers/LoginControllers');
+const validations = require('../middlewares/index');
 
-router.post('/', login);
+router.post(
+  '/', 
+  validations.loginUserValidation, 
+  LoginControllers.login
+);
 
 module.exports = router;

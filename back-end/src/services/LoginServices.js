@@ -8,7 +8,6 @@ const LoginModels = require('../models/LoginModels');
 
 const login = async (email) => {
   const loginStatus = await LoginModels.findUserByEmail(email);
-  console.log(loginStatus);
   if (loginStatus.err) {
     return { err: { code: loginStatus.err.code, message: loginStatus.err.message } };
   }

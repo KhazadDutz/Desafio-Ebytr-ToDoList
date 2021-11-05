@@ -3,7 +3,7 @@ const SignUpServices = require('../services/SignUpServices');
 const registerNewUser = async (req, res) => {
   const { email, password } = req.body;
   const status = await SignUpServices.registerNewUser(email, password);
-  console.log(status, 'DENTRO DO CONTROLLERS')
+
   if (status.err) {
     return res.status(status.err.code).json({ message: status.err.message });
   }

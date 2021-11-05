@@ -17,12 +17,10 @@ function Login() {
 
   const redirectAfterCheckUser = async (email, password) => {
     const checkedUser = await checkUserAPI(actualURL, email, password);
-    console.log(checkedUser, 'DENTRO DO LOGIN RETORNO DA CHECKUSERAPI')
-    // if (checkedUser.message) {
-    //   // isso seria uma boa prática? Retornar uma função de mudança de estado?
-    //   return setLoginMessage('Incorrect email or password');
-    // }
-    // history.push('/tasks');
+    if (checkedUser.code !== 200) {
+      return setLoginMessage(checkedUser.message);
+    }
+    history.push('/tasks');
   }
 
   return (
