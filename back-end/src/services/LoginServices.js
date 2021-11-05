@@ -1,22 +1,21 @@
-// const jwt = require('jsonwebtoken');
-const LoginModels = require('../models/LoginModels');
+const jwt = require('jsonwebtoken');
 
-// const jwtConfiguration = {
-//   expiresIn: '3d',
-//   algorithm: 'HS256',
-// };
+require("dotenv").config();
 
-const login = async (email) => {
-  const loginStatus = await LoginModels.findUserByEmail(email);
-  console.log(loginStatus);
-  if (loginStatus.err) {
-    return { err: { code: loginStatus.err.code, message: loginStatus.err.message } };
+const login = async (email, id) => {
+  const jwtConfiguration = {
+    expiresIn: '3d',
+    algorithm: 'HS256',
+  };
+
+  const secret = `${process.env.JWT_KEY}`;
+  const userWithoutPwd = {
+    id,
+    email,
   }
-  // const userWithoutPwd = {
-  //   userInfo
-  // }
-  // const token = jwt.sign({ data: userWithoutPwd, secret, jwtConfiguration })
-  return { ok: { code: 200, message: 'Login successful' } };
+
+  const token = await jwt.sign({ data: userWithoutPwd }, secret, jwtConfiguration);
+  return { code: 200, token };
 }
 
 module.exports = {

@@ -1,27 +1,23 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import appContext from '../Context/appContext';
-import { checkUserAPI } from '../Services/index';
 
-function SignUp() {
-  const [signUpMessage, setSignUpMessage] = useState('');
+function Register() {
   const { 
     email, 
     setEmail,
     password,
     setPassword,
+    checkUserMessage,
+    setCheckUserMessage,
+    redirectAfterCheckUser,
   } = useContext(appContext);
   const history = useHistory();
   const actualURL = history.location.pathname;
 
-  const redirectAfterCheckUser = async (email, password) => {
-    const checkedUser = await checkUserAPI(actualURL, email, password);
-    if (checkedUser.message) {
-      // isso seria uma boa prática? Retornar uma função de mudança de estado?
-      return setSignUpMessage('Insert a valid email or password');
-    }
-    history.push('/');
-  }
+  useEffect(() => {
+    setCheckUserMessage(''); 
+  }, []);
 
   return (
     <div>
@@ -44,15 +40,15 @@ function SignUp() {
           onChange={ ({ target: { value } }) => setPassword(value) }
         />
       </label>
-      <span>{signUpMessage ? <p>{signUpMessage}</p> : <></>}</span>
+      <span>{checkUserMessage ? <p>{checkUserMessage}</p> : <></>}</span>
       <button
         type="button"
-        onClick={ () =>  redirectAfterCheckUser(email, password) }
+        onClick={ () =>  redirectAfterCheckUser(actualURL, 'login' ,email, password) }
       >
-        SignUp
+        Register
       </button>
     </div>
   )
 }
 
-export default SignUp;
+export default Register;

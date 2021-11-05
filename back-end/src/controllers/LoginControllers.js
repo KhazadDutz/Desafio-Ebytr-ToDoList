@@ -1,12 +1,9 @@
 const LoginServices = require('../services/LoginServices');
 
 const login = async (req, res) => {
-  const { email, password } = req.body;
-  const loginStatus = await LoginServices.login(email);
-  if (loginStatus.err) {
-    return res.status(loginStatus.err.code).json({ message: loginStatus.err.message });
-  }
-  return res.status(loginStatus.ok.code).json({ message: loginStatus.ok.message });
+  const { email, id } = req.user
+  const loginStatus = await LoginServices.login(email, id);
+  return res.status(loginStatus.code).json({ message: loginStatus.token });
 }
 
 module.exports = {
